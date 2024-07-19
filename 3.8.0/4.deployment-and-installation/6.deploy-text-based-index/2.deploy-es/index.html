@@ -8422,7 +8422,10 @@ Document versions starting from 3.6.0 contain Community Edition features only. F
 <p>To deploy an Elasticsearch cluster, see <a href="https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-deploy-elasticsearch.html">Kubernetes Elasticsearch deployment</a> or <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.15/targz.html">Elasticsearch installation</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To support external network access to Elasticsearch, set <code>network.host</code> to <code>0.0.0.0</code> in <code>config/elasticsearch.yml</code>.</p>
+<ul>
+<li>To support external network access to Elasticsearch, set <code>network.host</code> to <code>0.0.0.0</code> in <code>config/elasticsearch.yml</code>.</li>
+<li>Only Elasticsearch version 7.x is supported.</li>
+</ul>
 </div>
 <p>You can configure the Elasticsearch to meet your business needs. To customize the Elasticsearch, see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/settings.html">Elasticsearch Document</a>.</p>
 <h2 id="sign_in_to_the_text_search_clients">Sign in to the text search clients<a class="headerlink" href="#sign_in_to_the_text_search_clients" title="Permanent link">&para;</a></h2>
@@ -8468,7 +8471,7 @@ Document versions starting from 3.6.0 contain Community Edition features only. F
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 10, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 19, 2024</span>
       
     
   </small>

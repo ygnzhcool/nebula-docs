@@ -8636,30 +8636,31 @@ nebula&gt; MATCH (v)&lt;-[e:follow]- (v2) WHERE id(v) == &#39;player100&#39; \
 </code></pre></div>
 <h3 id="to_use_subqueries_as_the_starting_vertice_of_a_graph_traversal">To use subqueries as the starting vertice of a graph traversal<a class="headerlink" href="#to_use_subqueries_as_the_starting_vertice_of_a_graph_traversal" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code># Return the friends of the player100 vertex and the teams that the friends belong to.
-nebula&gt; GO FROM &quot;player100&quot; OVER follow REVERSELY \
-        YIELD src(edge) AS id | \
+nebula&gt; GO FROM &quot;player100&quot; OVER follow \
+        YIELD dst(edge) AS id | \
         GO FROM $-.id OVER serve \
         WHERE properties($^).age &gt; 20 \
-        YIELD properties($^).name AS FriendOf, properties($$).name AS Team;
+        YIELD properties($^).name AS Friend, properties($$).name AS Team;
 +---------------------+-----------------+
-| FriendOf            | Team            |
+| Friend              | Team            |
 +---------------------+-----------------+
-| &quot;Boris Diaw&quot;        | &quot;Spurs&quot;         |
-| &quot;Boris Diaw&quot;        | &quot;Jazz&quot;          |
-| &quot;Boris Diaw&quot;        | &quot;Suns&quot;          |
-...
+| &quot;Tony Parker&quot;       | &quot;Spurs&quot;         |
+| &quot;Tony Parker&quot;       | &quot;Hornets&quot;       |
+| &quot;Manu Ginobili&quot;     | &quot;Spurs&quot;         |
++---------------------+-----------------+
 
 # The following MATCH query has the same semantics as the previous GO query.
-nebula&gt; MATCH (v)&lt;-[e:follow]- (v2)-[e2:serve]-&gt;(v3)  \
+nebula&gt; MATCH (v)-[e:follow]-&gt; (v2)-[e2:serve]-&gt;(v3)  \
         WHERE id(v) == &#39;player100&#39; \
-        RETURN v2.player.name AS FriendOf, v3.team.name AS Team;
+        AND properties(v2).age &gt; 20 \
+        RETURN v2.player.name AS Friend, v3.team.name AS Team;
 +---------------------+-----------------+
-| FriendOf            | Team            |
+| Friend              | Team            |
 +---------------------+-----------------+
-| &quot;Boris Diaw&quot;        | &quot;Spurs&quot;         |
-| &quot;Boris Diaw&quot;        | &quot;Jazz&quot;          |
-| &quot;Boris Diaw&quot;        | &quot;Suns&quot;          |
-...
+| &quot;Tony Parker&quot;       | &quot;Spurs&quot;         |
+| &quot;Tony Parker&quot;       | &quot;Hornets&quot;       |
+| &quot;Manu Ginobili&quot;     | &quot;Spurs&quot;         |
++---------------------+-----------------+
 </code></pre></div>
 <h3 id="to_use_group_by_to_group_the_output">To use <code>GROUP BY</code> to group the output<a class="headerlink" href="#to_use_group_by_to_group_the_output" title="Permanent link">&para;</a></h3>
 <p>You need to use <code>YIELD</code> to define the output that needs to be returned after grouping.</p>
@@ -8705,7 +8706,7 @@ nebula&gt; GO FROM &quot;player100&quot; OVER follow WHERE properties($$).name I
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 30, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2024</span>
       
     
   </small>

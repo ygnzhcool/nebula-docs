@@ -8510,7 +8510,7 @@ https://github.com/mkdocs/mkdocs/blob/master/mkdocs/themes/mkdocs/main.html -->
 </tr>
 </tbody>
 </table>
-<p>例如创建点的 nGQL 语法：</p>
+<p>例如插入一个点的 nGQL 语法：</p>
 <div class="highlight"><pre><span></span><code>INSERT VERTEX [IF NOT EXISTS] [tag_props, [tag_props] ...]
 VALUES &lt;vid&gt;: ([prop_value_list])
 
@@ -8525,6 +8525,7 @@ prop_value_list:
 </code></pre></div>
 <p>示例语句：</p>
 <div class="highlight"><pre><span></span><code>nebula&gt; CREATE TAG IF NOT EXISTS player(name string, age int);
+nebula&gt; INSERT VERTEX IF NOT EXISTS player(name,age) VALUES &quot;player100&quot;:(&quot;Tim Duncan&quot;, 42);
 </code></pre></div>
 <h2 id="opencypher">关于 openCypher 兼容性<a class="headerlink" href="#opencypher" title="Permanent link">&para;</a></h2>
 <h3 id="ngql_opencypher">原生 nGQL 和 openCypher 的关系<a class="headerlink" href="#ngql_opencypher" title="Permanent link">&para;</a></h3>
@@ -8721,7 +8722,7 @@ Feature:  Comparison of where clause
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 26, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2024</span>
       
     
   </small>

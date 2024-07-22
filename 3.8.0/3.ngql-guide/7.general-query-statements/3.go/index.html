@@ -8682,28 +8682,30 @@ nebula&gt; MATCH (v)&lt;-[e:follow]- (v2) WHERE id(v) == &#39;player100&#39; \
 <p>场景：使用子查询的结果作为图遍历的起始点。</p>
 <div class="highlight"><pre><span></span><code># 查询 player100 年龄大于 20 的朋友和这些朋友所属队伍。
 nebula&gt; GO FROM &quot;player100&quot; OVER follow \
-        YIELD src(edge) AS id | \
+        YIELD dst(edge) AS id | \
         GO FROM $-.id OVER serve \
         WHERE properties($^).age &gt; 20 \
         YIELD properties($^).name AS Friend, properties($$).name AS Team;
 +---------------------+-----------------+
 | Friend              | Team            |
 +---------------------+-----------------+
-| &quot;Tim Duncan&quot;        | &quot;Spurs&quot;         |
-| &quot;Tim Duncan&quot;        | &quot;Spurs&quot;         |
+| &quot;Tony Parker&quot;       | &quot;Spurs&quot;         |
+| &quot;Tony Parker&quot;       | &quot;Hornets&quot;       |
+| &quot;Manu Ginobili&quot;     | &quot;Spurs&quot;         |
 +---------------------+-----------------+
 
 # 该 MATCH 查询与上一个 GO 查询具有相同的语义。
-nebula&gt; MATCH (v)&lt;-[e:follow]- (v2)-[e2:serve]-&gt;(v3)  \
+nebula&gt; MATCH (v)-[e:follow]-&gt; (v2)-[e2:serve]-&gt;(v3)  \
         WHERE id(v) == &#39;player100&#39; \
-        RETURN v2.player.name AS FriendOf, v3.team.name AS Team;
+        AND properties(v2).age &gt; 20 \
+        RETURN v2.player.name AS Friend, v3.team.name AS Team;
 +---------------------+-----------------+
-| FriendOf            | Team            |
+| Friend              | Team            |
 +---------------------+-----------------+
-| &quot;Boris Diaw&quot;        | &quot;Spurs&quot;         |
-| &quot;Boris Diaw&quot;        | &quot;Jazz&quot;          |
-| &quot;Boris Diaw&quot;        | &quot;Suns&quot;          |
-...
+| &quot;Tony Parker&quot;       | &quot;Spurs&quot;         |
+| &quot;Tony Parker&quot;       | &quot;Hornets&quot;       |
+| &quot;Manu Ginobili&quot;     | &quot;Spurs&quot;         |
++---------------------+-----------------+
 </code></pre></div>
 <h3 id="group_by">使用 GROUP BY 分组<a class="headerlink" href="#group_by" title="Permanent link">&para;</a></h3>
 <p>场景：使用<code>GROUP BY</code>分组，然后使用<code>YIELD</code>返回分组后的结果。</p>
@@ -8749,7 +8751,7 @@ nebula&gt; GO FROM &quot;player100&quot; OVER follow WHERE properties($$).name I
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 26, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2024</span>
       
     
   </small>

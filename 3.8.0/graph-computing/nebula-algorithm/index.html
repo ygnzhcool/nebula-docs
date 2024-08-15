@@ -8440,10 +8440,10 @@ Document versions starting from 3.6.0 contain Community Edition features only. F
 <li>The NebulaGraph services have been deployed and started. For details, see <a href="../../4.deployment-and-installation/1.resource-preparations/">NebulaGraph Installation</a>.</li>
 </ul>
 <ul>
-<li>The Spark version is 2.4.x.</li>
+<li>The Spark version is 2.4 or 3.x is installed.</li>
 </ul>
 <ul>
-<li>The Scala version is 2.11.</li>
+<li>The Scala version is 2.11 (for Spark 2.4) or 2.12 (for Spark 3.x) is installed.</li>
 </ul>
 <ul>
 <li>(Optional) If users need to clone, compile, and package the latest Algorithm in Github, install <a href="https://maven.apache.org/download.cgi">Maven</a>.</li>
@@ -8619,6 +8619,9 @@ Document versions starting from 3.6.0 contain Community Edition features only. F
 <li>
 <p>Clone the repository <code>nebula-algorithm</code>.</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>v3.2.0<span class="w"> </span>https://github.com/vesoft-inc/nebula-algorithm.git
+</code></pre></div>
+<p>If running Algorithm in a Spark 3.x environment, use the spark3 branch:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>spark3<span class="w"> </span>https://github.com/vesoft-inc/nebula-algorithm.git
 </code></pre></div>
 </li>
 <li>
@@ -8808,7 +8811,7 @@ val<span class="w"> </span><span class="nv">prResult</span><span class="w"> </sp
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 17, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 15, 2024</span>
       
     
   </small>

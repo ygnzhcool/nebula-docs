@@ -8507,10 +8507,10 @@ https://github.com/mkdocs/mkdocs/blob/master/mkdocs/themes/mkdocs/main.html -->
 <li>NebulaGraph 服务已经部署并启动。详细信息，参考 <a href="../../4.deployment-and-installation/1.resource-preparations/" title="点击前往 NebulaGraph 安装部署">NebulaGraph 安装部署</a>。</li>
 </ul>
 <ul>
-<li>Spark 版本为 2.4.x。</li>
+<li>已安装 Spark2.4 或者 3.x</li>
 </ul>
 <ul>
-<li>Scala 版本为 2.11。</li>
+<li>已安装 Scala 2.11（对应 Spark 2.4）或 2.12（对应 Spark 3.x）。</li>
 </ul>
 <ul>
 <li>（可选）如果用户需要在 Github 中克隆最新的 Algorithm，并自行编译打包，可以选择安装 <a href="https://maven.apache.org/download.cgi">Maven</a>。</li>
@@ -8686,6 +8686,9 @@ https://github.com/mkdocs/mkdocs/blob/master/mkdocs/themes/mkdocs/main.html -->
 <li>
 <p>克隆仓库<code>nebula-algorithm</code>。</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>v3.2.0<span class="w"> </span>https://github.com/vesoft-inc/nebula-algorithm.git
+</code></pre></div>
+<p>如果是在 Spark 3.x 环境中运行 Algorithm，请使用 spark3 分支：</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>spark3<span class="w"> </span>https://github.com/vesoft-inc/nebula-algorithm.git
 </code></pre></div>
 </li>
 <li>
@@ -8878,7 +8881,7 @@ val<span class="w"> </span><span class="nv">prResult</span><span class="w"> </sp
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 22, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 15, 2024</span>
       
     
   </small>
